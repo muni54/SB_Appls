@@ -1,0 +1,42 @@
+<wsdl:definitions name="EmpDBProcess" targetNamespace="http://xmlns.oracle.com/SOAAppls/EmpDBSample/EmpDBProcess" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:client="http://xmlns.oracle.com/SOAAppls/EmpDBSample/EmpDBProcess" xmlns:ns1="http://xmlns.oracle.com/pcbpel/adapter/db/top/EmpDBRef" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <wsdl:documentation>
+        <abstractWSDL>http://mitpl-lt-088.malomatia.local:7101/soa-infra/services/begin/EmpDBSample!1.0/WSDLs/EmpDBProcess.wsdl</abstractWSDL>
+    </wsdl:documentation>
+    <plnk:partnerLinkType name="EmpDBProcess">
+        <plnk:role name="EmpDBProcessProvider" portType="client:EmpDBProcess"/>
+    </plnk:partnerLinkType>
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/EmpDBRef" schemaLocation="XMLSchema_450474539.xsd"/>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="EmpDBProcessRequestMessage">
+        <wsdl:part name="payload" element="ns1:EmpDBRefSelect_deptIdInputParameters"/>
+    </wsdl:message>
+    <wsdl:message name="EmpDBProcessResponseMessage">
+        <wsdl:part name="payload" element="ns1:EmployeesCollection"/>
+    </wsdl:message>
+    <wsdl:portType name="EmpDBProcess">
+        <wsdl:operation name="process">
+            <wsdl:input message="client:EmpDBProcessRequestMessage"/>
+            <wsdl:output message="client:EmpDBProcessResponseMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="EmpDBProcessBinding" type="client:EmpDBProcess">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="process">
+            <soap:operation style="document" soapAction="process"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="empdbprocess_client_ep">
+        <wsdl:port name="EmpDBProcess_pt" binding="client:EmpDBProcessBinding">
+            <soap:address location="http://mitpl-lt-088.malomatia.local:7101/soa-infra/services/begin/EmpDBSample/empdbprocess_client_ep"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

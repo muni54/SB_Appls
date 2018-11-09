@@ -1,0 +1,48 @@
+<!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is JAX-WS RI 2.3.0-b170407.2038 svn-revision#2eaca54d17a59d265c6fe886b7fd0027836c766c. --><definitions name="RequestsService" targetNamespace="http://webservice.adf.leasecontract.municipality.mme.gov.qa/" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://webservice.adf.leasecontract.municipality.mme.gov.qa/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsp:Policy wsu:Id="wss_username_token_service_policy" xmlns="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<sp:SupportingTokens xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+<wsp:Policy>
+<sp:UsernameToken sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient">
+<wsp:Policy>
+<sp:WssUsernameToken10/>
+</wsp:Policy>
+</sp:UsernameToken>
+</wsp:Policy>
+</sp:SupportingTokens>
+</wsp:Policy>
+    <types>
+        <xsd:schema>
+            <xsd:import namespace="http://webservice.adf.leasecontract.municipality.mme.gov.qa/" schemaLocation="RequestsServiceXSD.xsd"/>
+        </xsd:schema>
+    </types>
+    <message name="submitLeaseContractRequest">
+        <part name="parameters" element="tns:submitLeaseContractRequest"/>
+    </message>
+    <message name="submitLeaseContractRequestResponse">
+        <part name="parameters" element="tns:submitLeaseContractRequestResponse"/>
+    </message>
+    <portType name="RequestsService">
+        <operation name="submitLeaseContractRequest">
+            <input message="tns:submitLeaseContractRequest" wsam:Action="http://webservice.adf.leasecontract.municipality.mme.gov.qa/RequestsService/submitLeaseContractRequestRequest"/>
+            <output message="tns:submitLeaseContractRequestResponse" wsam:Action="http://webservice.adf.leasecontract.municipality.mme.gov.qa/RequestsService/submitLeaseContractRequestResponse"/>
+        </operation>
+    </portType>
+    <binding name="RequestsServiceBinding" type="tns:RequestsService">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+      <wsp:PolicyReference URI="#wss_username_token_service_policy" wsdl:required="false"/>
+        <operation name="submitLeaseContractRequest">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="RequestsService">
+        <port name="RequestsService" binding="tns:RequestsServiceBinding">
+            <soap:address location="http://172.28.5.215:8003/mmews/soap/RequestsService"/>
+        </port>
+    </service>
+</definitions>

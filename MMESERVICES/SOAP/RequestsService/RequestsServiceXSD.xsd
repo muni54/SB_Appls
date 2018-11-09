@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xsd:schema xmlns:ns0="http://webservice.adf.leasecontract.municipality.mme.gov.qa/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://webservice.adf.leasecontract.municipality.mme.gov.qa/">
+  <xsd:complexType name="submitLeaseContractRequest">
+    <xsd:sequence>
+      <xsd:element name="request" type="ns0:registrationLeaseContractRequestTO" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="submitLeaseContractRequestResponse">
+    <xsd:sequence>
+      <xsd:element name="return" type="ns0:transactionalWSReturn" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="registrationLeaseContractRequestTO">
+    <xsd:complexContent>
+      <xsd:extension base="ns0:transactionalWSRequest">
+        <xsd:sequence>
+          <xsd:element name="contract" type="ns0:registrationLeaseContractsTO" minOccurs="0"/>
+          <xsd:element name="registrationPeriod" type="xsd:long" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="transactionalWSRequest">
+    <xsd:complexContent>
+      <xsd:extension base="ns0:wsRequest">
+        <xsd:sequence>
+          <xsd:element name="attachments" type="ns0:attachmentTO" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element name="channelId" type="xsd:long" minOccurs="0"/>
+          <xsd:element name="applicant" type="ns0:entitiesTO" minOccurs="0"/>
+          <xsd:element name="sectorId" type="xsd:long" minOccurs="0"/>
+          <xsd:element name="municipaltyId" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="submissionUnitId" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="notes" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="BPMType" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="applicantDelegationId" type="xsd:long" minOccurs="0"/>
+          <xsd:element name="beneficiaryId" type="xsd:long" minOccurs="0"/>
+          <xsd:element name="id" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="requestNo" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="statusId" type="xsd:long" minOccurs="0"/>
+          <xsd:element name="typeId" type="xsd:long" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="wsRequest"/>
+  <xsd:complexType name="attachmentTO">
+    <xsd:sequence>
+      <xsd:element name="title" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="fileName" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="typeId" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="Base64Content" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="base64Content" type="xsd:string" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="entitiesTO">
+    <xsd:sequence>
+      <xsd:element name="typeId" type="xsd:long" minOccurs="0"/>
+      <xsd:element name="nameAr" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="nameEn" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="personQId" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="establishmentId" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="companyId" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="otherIdentityId" type="xsd:long" minOccurs="0"/>
+      <xsd:element name="email" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="mobileNo" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="fax" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="poBox" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="description" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="landLineNo" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="commercialRegistrationNo" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="generalEntityType" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="genralEntityId" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="id" type="xsd:long" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="registrationLeaseContractsTO">
+    <xsd:sequence>
+      <xsd:element name="propertyTypeId" type="xsd:long" minOccurs="0"/>
+      <xsd:element name="lessor" type="ns0:entitiesTO" minOccurs="0"/>
+      <xsd:element name="owner" type="ns0:entitiesTO" minOccurs="0"/>
+      <xsd:element name="lessee" type="ns0:entitiesTO" minOccurs="0"/>
+      <xsd:element name="contractUtilities" type="ns0:registrationLeaseContractUtilityTO" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="isSubLeasting" type="xsd:boolean"/>
+      <xsd:element name="mainContractRegisrationCertificareId" type="xsd:long" minOccurs="0"/>
+      <xsd:element name="contractStartDate" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="contractEndDate" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="securityDepositAmount" type="xsd:long" minOccurs="0"/>
+      <xsd:element name="furnitureStatusId" type="xsd:long" minOccurs="0"/>
+      <xsd:element name="pinNo" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="electrictyNo" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="waterNo" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="titleDeedNo" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="municipaltyId" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="streetNo" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="zoneNo" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="bulldingNo" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="flatNo" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="villaNo" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="addressText" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="propertyDesc" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="area" type="xsd:long" minOccurs="0"/>
+      <xsd:element name="bedRoomsCount" type="xsd:int" minOccurs="0"/>
+      <xsd:element name="bathRoomsCount" type="xsd:int" minOccurs="0"/>
+      <xsd:element name="rentPaymentAmount" type="xsd:long" minOccurs="0"/>
+      <xsd:element name="rentPaymentDueDay" type="xsd:long" minOccurs="0"/>
+      <xsd:element name="rentPaymentFrequency" type="xsd:long" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="registrationLeaseContractUtilityTO">
+    <xsd:sequence>
+      <xsd:element name="utilityId" type="xsd:long" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="transactionalWSReturn">
+    <xsd:complexContent>
+      <xsd:extension base="ns0:wsReturn">
+        <xsd:sequence>
+          <xsd:element name="transactionId" type="xsd:long"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="wsReturn">
+    <xsd:sequence>
+      <xsd:element name="errorCode" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="errorMessage" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="errorMessageAr" type="xsd:string" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="submitLeaseContractRequest" type="ns0:submitLeaseContractRequest"/>
+  <xsd:element name="submitLeaseContractRequestResponse" type="ns0:submitLeaseContractRequestResponse"/>
+  <xsd:element name="registrationLeaseContractRequestTO" type="ns0:registrationLeaseContractRequestTO"/>
+  <xsd:element name="transactionalWSRequest" type="ns0:transactionalWSRequest"/>
+  <xsd:element name="request" type="ns0:wsRequest"/>
+  <xsd:element name="attachmentTO" type="ns0:attachmentTO"/>
+  <xsd:element name="entitiesTO" type="ns0:entitiesTO"/>
+  <xsd:element name="registrationLeaseContractsTO" type="ns0:registrationLeaseContractsTO"/>
+  <xsd:element name="registrationLeaseContractUtilityTO" type="ns0:registrationLeaseContractUtilityTO"/>
+</xsd:schema>
