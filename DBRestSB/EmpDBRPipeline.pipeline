@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:pipelineEntry xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con1="http://www.bea.com/wli/sb/stages/config" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config">
+    <con:coreEntry>
+        <con:binding type="SOAP" isSoap12="false" xsi:type="con:SoapBindingType">
+            <con:wsdl ref="DBRestSB/Resources/EmpDBRService"/>
+            <con:binding>
+                <con:name>EmpDBRService_ptt-binding</con:name>
+                <con:namespace>http://xmlns.oracle.com/SBAppls/DBRestSB/EmpDBRService</con:namespace>
+            </con:binding>
+        </con:binding>
+        <con:xqConfiguration>
+            <con:snippetVersion>1.0</con:snippetVersion>
+        </con:xqConfiguration>
+    </con:coreEntry>
+    <con:router>
+        <con:pipeline type="request" name="request-N3f579bf9.610e5e94.0.16703f6446e.N7ff6">
+            <con:stage id="_StageId-N3f579bf9.610e5e94.0.16703f6446e.N7ff4" name="Stage1">
+                <con:context>
+                    <con1:userNsDecl prefix="emp" namespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/EmpDBRef"/>
+                </con:context>
+                <con:actions>
+                    <con2:wsCallout>
+                        <con1:id>_ActionId-N3f579bf9.610e5e94.0.16703f6446e.N7fef</con1:id>
+                        <con2:service ref="DBRestSB/EmpDBServiceRef" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con2:operation>process</con2:operation>
+                        <con2:request>
+                            <con2:body wrapped="false">serviceInput</con2:body>
+                        </con2:request>
+                        <con2:response>
+                            <con2:body wrapped="false">serviceOutput</con2:body>
+                        </con2:response>
+                        <con2:requestTransform>
+                            <con2:assign varName="serviceInput">
+                                <con1:id>_ActionId-N3f579bf9.610e5e94.0.16703f6446e.N7feb</con1:id>
+                                <con2:expr>
+                                    <con1:xqueryText>&lt;emp:EmpDBRefSelect_deptIdInputParameters 	xmlns:emp="http://xmlns.oracle.com/pcbpel/adapter/db/top/EmpDBRef">
+&lt;emp:deptId>{$body/emp:EmpDBRefSelect_deptIdInputParameters/emp:deptId/text()}&lt;/emp:deptId>
+&lt;/emp:EmpDBRefSelect_deptIdInputParameters></con1:xqueryText>
+                                </con2:expr>
+                            </con2:assign>
+                        </con2:requestTransform>
+                        <con2:responseTransform/>
+                    </con2:wsCallout>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-N3f579bf9.610e5e94.0.16703f6446e.N7ff5">
+            <con:stage id="_StageId-N3f579bf9.610e5e94.0.16703f6446e.N7ff3" name="Stage1">
+                <con:context/>
+                <con:actions>
+                    <con2:replace varName="body" contents-only="true">
+                        <con1:id>_ActionId-N3f579bf9.610e5e94.0.16703f6446e.N7fe8</con1:id>
+                        <con2:expr>
+                            <con1:xqueryTransform>
+                                <con1:resource ref="DBRestSB/Resources/empResponse"/>
+                                <con1:param name="empCollections">
+                                    <con1:path>$serviceOutput</con1:path>
+                                </con1:param>
+                            </con1:xqueryTransform>
+                        </con2:expr>
+                    </con2:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:flow>
+            <con:pipeline-node name="Pipeline Pair Node1">
+                <con:request>request-N3f579bf9.610e5e94.0.16703f6446e.N7ff6</con:request>
+                <con:response>response-N3f579bf9.610e5e94.0.16703f6446e.N7ff5</con:response>
+            </con:pipeline-node>
+        </con:flow>
+    </con:router>
+</con:pipelineEntry>

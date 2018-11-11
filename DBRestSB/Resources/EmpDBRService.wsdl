@@ -1,0 +1,37 @@
+<wsdl:definitions name="EmpDBRService" targetNamespace="http://xmlns.oracle.com/SBAppls/DBRestSB/EmpDBRService" xmlns:tns="http://xmlns.oracle.com/SBAppls/DBRestSB/EmpDBRService" xmlns:inp1="http://xmlns.oracle.com/pcbpel/adapter/db/top/EmpDBRef" xmlns:inp2="http://xmlns.oracle.com/pcbpel/adapter/db/top/EmpDBRef" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <plnk:partnerLinkType name="EmpDBRService">
+        <plnk:role name="EmpDBRServiceProvider" portType="tns:EmpDBRService_ptt"/>
+    </plnk:partnerLinkType>
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/EmpDBRef" schemaLocation="nxsd_empInput.xsd"/>
+        </xsd:schema>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/EmpDBRef" schemaLocation="nxsd_empResult.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="getEmp_inputMessage">
+        <wsdl:part name="request" element="inp1:EmpDBRefSelect_deptIdInputParameters"/>
+    </wsdl:message>
+    <wsdl:message name="getEmp_outputMessage">
+        <wsdl:part name="reply" element="inp1:EmployeesCollection"/>
+    </wsdl:message>
+    <wsdl:portType name="EmpDBRService_ptt">
+        <wsdl:operation name="getEmp">
+            <wsdl:input message="tns:getEmp_inputMessage"/>
+            <wsdl:output message="tns:getEmp_outputMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="EmpDBRService_ptt-binding" type="tns:EmpDBRService_ptt">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getEmp">
+            <soap:operation soapAction="getEmp"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+</wsdl:definitions>

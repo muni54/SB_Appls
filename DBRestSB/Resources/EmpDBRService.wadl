@@ -1,0 +1,25 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns0="http://xmlns.oracle.com/pcbpel/adapter/db/top/EmpDBRef" xmlns="http://wadl.dev.java.net/2009/02">
+   <doc title="EmpDBRService">RestService</doc>
+   <grammars>
+      <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/EmpDBRef" schemaLocation="nxsd_empInput.xsd"/>
+        </xsd:schema>
+      <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/EmpDBRef" schemaLocation="nxsd_empResult.xsd"/>
+        </xsd:schema>
+   </grammars>
+   <resources>
+      <resource path="/">
+         <method name="GET" soa:wsdlOperation="getEmp">
+            <request soa:paramElement="pns:EmpDBRefSelect_deptIdInputParameters" xmlns:pns="http://xmlns.oracle.com/pcbpel/adapter/db/top/EmpDBRef">
+               <param name="deptId" style="query" soa:expression="$msg.request/ns0:deptId" type="xsd:integer"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/xml" element="cns:EmployeesCollection" xmlns:cns="http://xmlns.oracle.com/pcbpel/adapter/db/top/EmpDBRef"/>
+               <representation mediaType="application/json" element="cns:EmployeesCollection" xmlns:cns="http://xmlns.oracle.com/pcbpel/adapter/db/top/EmpDBRef"/>
+            </response>
+         </method>
+      </resource>
+   </resources>
+</application>

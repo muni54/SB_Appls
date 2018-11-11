@@ -17,7 +17,6 @@
             <xs:element name="hireDate" type="xs:dateTime" minOccurs="0"/>
             <xs:element name="jobId" type="string10" minOccurs="0"/>
             <xs:element name="salary" type="xs:decimal" minOccurs="0" nillable="true"/>
-            <xs:element name="commissionPct" type="xs:decimal" minOccurs="0" nillable="true"/>
             <xs:element name="managerId" type="xs:int" minOccurs="0" nillable="true"/>
             <xs:element name="departmentId" type="xs:int" minOccurs="0" nillable="true"/>
         </xs:sequence>
